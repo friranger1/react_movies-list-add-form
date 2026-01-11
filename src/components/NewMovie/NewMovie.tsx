@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { TextField } from '../TextField';
+import { Movie } from '../../types/Movie';
 
-
-  type Props = {
-    onAdd: (movie: any) => void;
-  };
+type Props = {
+  onAdd: (movie: Movie) => void;
+};
 
 export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const [count, setCount] = useState(0);
@@ -13,17 +13,18 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const [imgUrl, setImgUrl] = React.useState('');
   const [imdbUrl, setImdbUrl] = React.useState('');
   const [imdbId, setimdbId] = React.useState('');
-  const isFormInvalid = !title.trim() || !imgUrl.trim() || !imdbUrl.trim() || !imdbId.trim();
-
+  const isFormInvalid =
+    !title.trim() || !imgUrl.trim() || !imdbUrl.trim() || !imdbId.trim();
 
   return (
-    <form className="NewMovie" key={count}
-      onSubmit={(event) => {
+    <form
+      className="NewMovie"
+      key={count}
+      onSubmit={event => {
         event.preventDefault();
         const newMovie = { title, description, imgUrl, imdbUrl, imdbId };
 
         onAdd(newMovie);
-
 
         setTitle('');
         setDescription('');
@@ -31,15 +32,18 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         setImdbUrl('');
         setimdbId('');
 
-        setCount(prev => prev + 1)
-      }}>
+        setCount(prev => prev + 1);
+      }}
+    >
       <h2 className="title">Add a movie</h2>
 
       <TextField
         name="title"
         label="Title"
         value={title}
-        onChange={(newValue) => { setTitle(newValue) }}
+        onChange={newValue => {
+          setTitle(newValue);
+        }}
         required
       />
 
@@ -47,27 +51,34 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="description"
         label="Description"
         value={description}
-        onChange={(newDescription) => setDescription(newDescription)} />
+        onChange={newDescription => setDescription(newDescription)}
+      />
 
       <TextField
         name="imgUrl"
         label="Image URL"
         value={imgUrl}
-        onChange={(newimgUrl) => { setImgUrl(newimgUrl) }}
+        onChange={newimgUrl => {
+          setImgUrl(newimgUrl);
+        }}
       />
 
       <TextField
         name="imdbUrl"
         label="Imdb URL"
         value={imdbUrl}
-        onChange={(newImdbUrl) => { setImdbUrl(newImdbUrl) }}
+        onChange={newImdbUrl => {
+          setImdbUrl(newImdbUrl);
+        }}
       />
 
       <TextField
         name="imdbId"
         label="Imdb ID"
         value={imdbId}
-        onChange={(newImdbId) => { setimdbId(newImdbId) }}
+        onChange={newImdbId => {
+          setimdbId(newImdbId);
+        }}
       />
 
       <div className="field is-grouped">
