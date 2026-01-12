@@ -16,6 +16,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const isFormInvalid =
     !title.trim() || !imgUrl.trim() || !imdbUrl.trim() || !imdbId.trim();
 
+
   return (
     <form
       className="NewMovie"
